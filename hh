@@ -1,0 +1,648 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:
+    radial-gradient(circle at 0% 0%, #ff6b81, transparent 55%),
+    radial-gradient(circle at 100% 0%, #4e54c8, transparent 55%),
+    radial-gradient(circle at 100% 100%, #24243e, #050514 60%);
+  color: #f7f7ff;
+  overflow-x: hidden;
+}
+
+.blob {
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.blob.one {
+  background: #ff9fe0;
+  top: -80px;
+  left: -40px;
+  animation: float1 18s infinite alternate ease-in-out;
+}
+
+.blob.two {
+  background: #7ee8fa;
+  bottom: -120px;
+  right: -40px;
+  animation: float2 22s infinite alternate ease-in-out;
+}
+
+@keyframes float1 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(80px, 40px) scale(1.1); }
+}
+
+@keyframes float2 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-60px, -50px) scale(1.05); }
+}
+
+main {
+  width: 100%;
+  max-width: 820px;
+  margin: 20px;
+  padding: 26px 22px 24px;
+  border-radius: 26px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 40%),
+    linear-gradient(315deg, rgba(0, 0, 0, 0.6), transparent 55%),
+    var(--card-bg);
+  box-shadow:
+    0 40px 90px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  position: relative;
+  overflow: hidden;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    120deg,
+    transparent 0,
+    rgba(255, 255, 255, 0.04) 40%,
+    transparent 100%
+  );
+  opacity: 0.55;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+header {
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(3, 4, 18, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  color: var(--text-soft);
+}
+
+.tag-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #7ee8fa, #4facfe);
+  box-shadow: 0 0 8px rgba(126, 232, 250, 0.8);
+}
+
+h1 {
+  font-size: 2rem;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 0.96rem;
+  opacity: 0.88;
+  margin-bottom: 4px;
+}
+
+.note {
+  font-size: 0.8rem;
+  opacity: 0.72;
+}
+
+.pill-row {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.76rem;
+}
+
+.pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(8, 10, 28, 0.95);
+  color: var(--text-soft);
+}
+
+form {
+  position: relative;
+  z-index: 1;
+  margin-top: 18px;
+  display: grid;
+  gap: 18px;
+}
+
+.section-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  opacity: 0.7;
+  margin-bottom: 2px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--accent-alt), var(--accent));
+  box-shadow: 0 0 16px rgba(255, 159, 224, 0.7);
+}
+
+.question {
+  padding: 12px 10px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 60%),
+    rgba(10, 12, 34, 0.96);
+}
+
+.q-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.q-title {
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.q-number {
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+.q-help {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
+
+label {
+  font-size: 0.86rem;
+  opacity: 0.9;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(8, 10, 32, 0.96);
+  color: #f7f7ff;
+  font-size: 0.94rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.1s, background 0.2s;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(230, 230, 255, 0.5);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(255, 159, 224, 0.7);
+  transform: translateY(-1px);
+  background: rgba(5, 7, 26, 0.98);
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.inline-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.radio-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.radio-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  cursor: pointer;
+  font-size: 0.82rem;
+  background: rgba(5, 6, 22, 0.98);
+  transition: background 0.15s, border-color 0.15s, transform 0.1s, box-shadow 0.15s;
+}
+
+.radio-pill input {
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.radio-pill:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.scale-row {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.8rem;
+}
+
+.scale-item {
+  flex: 1;
+  min-width: 54px;
+  padding: 6px 6px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  text-align: center;
+  background: rgba(5, 6, 22, 0.96);
+  cursor: pointer;
+  transition: transform 0.1s, border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.scale-item input {
+  display: block;
+  margin: 0 auto 2px;
+  accent-color: var(--accent-alt);
+}
+
+.scale-item span {
+  display: block;
+}
+
+.scale-item small {
+  display: block;
+  opacity: 0.7;
+  font-size: 0.7rem;
+}
+
+.scale-item:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(15, 18, 40, 0.98);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.footer-row {
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  margin-top: 6px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent-alt), var(--accent));
+  color: #050514;
+  font-weight: 600;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.9);
+  filter: brightness(1.04);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+  filter: brightness(0.98);
+}
+
+.footnote {
+  font-size: 0.75rem;
+  opacity: 0.68;
+  max-width: 320px;
+}
+
+@media (max-width: 640px) {
+  main {
+    margin: 14px;
+    padding: 20px 16px 18px;
+    border-radius: 22px;
+  }
+  h1 {
+    font-size: 1.6rem;
+  }
+  .pill-row {
+    gap: 6px;
+  }
+}
+<div class="section-label">Survey</div>
+<div class="progress-bar">
+  <div class="progress-fill"></div>
+</div>
+
+<form action="https://formspree.io/f/xnjbqovl" method="POST">
+  <!-- Q1–3 -->
+  <section class="question">
+    <div class="q-header">
+      <h2 class="q-title">About you</h2>
+      <span class="q-number">Q1–3</span>
+    </div>
+    <p class="q-help">
+      These answers stay anonymous and are only used to compare patterns across groups.
+    </p>
+
+    <div class="inline-group">
+      <div>
+        <label for="age">1. Age</label>
+        <input
+          type="number"
+          id="age"
+          name="age"
+          min="13"
+          max="120"
+          placeholder="Example: 19"
+          required
+        />
+      </div>
+      <div>
+        <label for="gender">2. Gender (optional)</label>
+        <input
+          type="text"
+          id="gender"
+          name="gender"
+          placeholder="Type what you're comfortable sharing"
+        />
+      </div>
+    </div>
+
+    <div style="margin-top:10px;">
+      <label for="status">3. Current relationship status</label>
+      <select id="status" name="relationship_status" required>
+        <option value="">Choose one</option>
+        <option value="single">Single</option>
+        <option value="casually-dating">Casually dating</option>
+        <option value="in-relationship">In a relationship</option>
+        <option value="engaged">Engaged</option>
+        <option value="married">Married</option>
+        <option value="separated-divorced">Separated / Divorced</option>
+        <option value="its-complicated">It's complicated</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Q4 -->
+  <section class="question">
+    <div class="q-header">
+      <h2 class="q-title">How important is marriage to you?</h2>
+      <span class="q-number">Q4</span>
+    </div>
+    <p class="q-help">
+      Use the scale below where 1 = not important at all and 5 = extremely important.
+    </p>
+
+    <div class="scale-row">
+      <label class="scale-item">
+        <input type="radio" name="importance" value="1" required />
+        <span>1</span>
+        <small>Not important</small>
+      </label>
+      <label class="scale-item">
+        <input type="radio" name="importance" value="2" />
+        <span>2</span>
+        <small>Low</small>
+      </label>
+      <label class="scale-item">
+        <input type="radio" name="importance" value="3" />
+        <span>3</span>
+        <small>Neutral</small>
+      </label>
+      <label class="scale-item">
+        <input type="radio" name="importance" value="4" />
+        <span>4</span>
+        <small>Important</small>
+      </label>
+      <label class="scale-item">
+        <input type="radio" name="importance" value="5" />
+        <span>5</span>
+        <small>Extremely important</small>
+      </label>
+    </div>
+  </section>
+
+  <!-- Q5 -->
+  <section class="question">
+    <div class="q-header">
+      <h2 class="q-title">Do you see yourself getting married someday?</h2>
+      <span class="q-number">Q5</span>
+    </div>
+    <p class="q-help">
+      Pick the option that feels closest to how you honestly feel right now.
+    </p>
+
+    <div class="radio-row">
+      <label class="radio-pill">
+        <input type="radio" name="future_marriage" value="yes" required />
+        <span>Yes, definitely</span>
+      </label>
+      <label class="radio-pill">
+        <input type="radio" name="future_marriage" value="maybe" />
+        <span>Maybe, depending on the person</span>
+      </label>
+      <label class="radio-pill">
+        <input type="radio" name="future_marriage" value="no" />
+        <span>No, I don't see myself marrying</span>
+      </label>
+      <label class="radio-pill">
+        <input type="radio" name="future_marriage" value="unsure" />
+        <span>Not sure yet</span>
+      </label>
+    </div>
+  </section>
+
+  <!-- Q6 -->
+  <section class="question">
+    <div class="q-header">
+      <h2 class="q-title">
+        If you did get married, when would feel like the right time?
+      </h2>
+      <span class="q-number">Q6</span>
+    </div>
+    <p class="q-help">
+      You can answer in age range, life stage, or both.
+    </p>
+    <textarea
+      name="ideal_timing"
+      placeholder="Example: Late 20s, after finishing school and being financially stable."
+    ></textarea>
+  </section>
+
+  <!-- Q7 -->
+  <section class="question">
+    <div class="q-header">
+      <h2 class="q-title">
+        What are the biggest factors that would make you say "yes" to marriage?
+      </h2>
+      <span class="q-number">Q7</span>
+    </div>
+    <p class="q-help">
+      Feel free to mention things like trust, religion, money, family expectations, etc.
+    </p>
+    <textarea
+      name="biggest_factors"
+      placeholder="List the top 2–5 things that would matter most to you."
+    ></textarea>
+  </section>
+
+  <!-- Q8 -->
+  <section class="question">
+    <div class="q-header">
+      <h2 class="q-title">What concerns or fears do you have about marriage?</h2>
+      <span class="q-number">Q8</span>
+    </div>
+    <p class="q-help">
+      There are no wrong answers — anything from divorce, cheating, finances, to losing independence.
+    </p>
+    <textarea
+      name="concerns"
+      placeholder="Write anything that honestly worries you about marriage."
+    ></textarea>
+  </section>
+
+  <!-- Q9 -->
+  <section class="question">
+    <div class="q-header">
+      <h2 class="q-title">
+        How do you feel about divorce and staying in an unhappy marriage?
+      </h2>
+      <span class="q-number">Q9</span>
+    </div>
+    <p class="q-help">
+      Short answer is fine — just how you personally see it.
+    </p>
+    <textarea
+      name="divorce_views"
+      placeholder="Example: I think divorce is sometimes necessary, I'd rather leave than stay miserable, etc."
+    ></textarea>
+  </section>
+
+  <!-- Q10 -->
+  <section class="question">
+    <div class="q-header">
+      <h2 class="q-title">
+        Overall, how positive or negative is your attitude toward marriage right now?
+      </h2>
+      <span class="q-number">Q10</span>
+    </div>
+    <p class="q-help">
+      Use the scale below where 1 = very negative and 5 = very positive.
+    </p>
+
+    <div class="scale-row">
+      <label class="scale-item">
+        <input type="radio" name="overall_attitude" value="1" required />
+        <span>1</span>
+        <small>Very negative</small>
+      </label>
+      <label class="scale-item">
+        <input type="radio" name="overall_attitude" value="2" />
+        <span>2</span>
+        <small>Somewhat negative</small>
+      </label>
+      <label class="scale-item">
+        <input type="radio" name="overall_attitude" value="3" />
+        <span>3</span>
+        <small>Mixed / neutral</small>
+      </label>
+      <label class="scale-item">
+        <input type="radio" name="overall_attitude" value="4" />
+        <span>4</span>
+        <small>Mostly positive</small>
+      </label>
+      <label class="scale-item">
+        <input type="radio" name="overall_attitude" value="5" />
+        <span>5</span>
+        <small>Very positive</small>
+      </label>
+    </div>
+  </section>
+
+  <!-- Optional email & submit -->
+  <section class="question">
+    <div class="q-header">
+      <h2 class="q-title">Optional: Stay in the loop</h2>
+      <span class="q-number">Bonus</span>
+    </div>
+    <p class="q-help">
+      If you'd like a copy of the results or summary later, drop an email below.
+    </p>
+
+    <input
+      type="email"
+      name="email"
+      placeholder="you@example.com (optional)"
+    />
+  </section>
+
+  <div class="footer-row">
+    <button type="submit">Submit my responses</button>
+    <p class="footnote">
+      This form is powered by Formspree. By submitting, you agree your answers can be
+      used for this anonymous research project only.
+    </p>
+  </div>
+</form>
